@@ -1,4 +1,9 @@
 #define _WIN32_WINNT 0x0500
+#ifdef _WIN32
+    #define CLEAR_SCREEN "cls"
+#else
+    #define CLEAR_SCREEN "clear"
+#endif
 #include <Windows.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,6 +19,8 @@
 #include <bitset>
 #include <sstream>
 #include <iomanip>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -832,14 +839,17 @@ void Game()
             }
         }
     }
-
-
-    void timer()
-    {
-        
-    }
-
-
+void timer(int seconds)
+{
+        for (int i = seconds; i > 0; --i)
+        {
+            system(CLEAR_SCREEN);
+            cout << "Left: " << i << " seconds" << endl;
+            this_thread::sleep_for(chrono::seconds(1));
+        }
+        system(CLEAR_SCREEN);
+        cout << "Time is up!" << endl;
+}
 int main()
  {
     int re,im,re1,im1;
@@ -1116,6 +1126,13 @@ else if(command == "bmi")
 {
     cout << "Welcome in bmi calculator! " << endl;
     bmi();
+}
+else if(command == "timer -s")
+{
+    int sec;
+    cout << "Give time in seconds: " << endl;
+    cin >> sec;
+    timer(sec);
 }
 return 0;
 }
