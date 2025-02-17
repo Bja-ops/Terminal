@@ -1,9 +1,4 @@
 #define _WIN32_WINNT 0x0500
-#ifdef _WIN32
-    #define CLEAR_SCREEN "cls"
-#else
-    #define CLEAR_SCREEN "clear"
-#endif
 #include <Windows.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -843,11 +838,9 @@ void timer(int seconds)
 {
         for (int i = seconds; i > 0; --i)
         {
-            system(CLEAR_SCREEN);
             cout << "Left: " << i << " seconds" << endl;
             this_thread::sleep_for(chrono::seconds(1));
         }
-        system(CLEAR_SCREEN);
         cout << "Time is up!" << endl;
 }
 int main()
