@@ -843,6 +843,39 @@ void timer(int seconds)
         }
         cout << "Time is up!" << endl;
 }
+void notepad(string text)
+    {
+        string operation;
+        cout << "Enter operation: ";
+        cin >> operation;
+        cin.ignore();
+        getline(cin, text);
+        if (operation == "save")
+        {
+            fstream file;
+            file.open("save.txt", ios::out | ios::app);
+            file << text;
+            file.close();
+        }
+        else if (operation == "load")
+        {
+            fstream file;
+            file.open("save.txt", ios::in);
+            if (file.is_open())
+            {
+                cout << "Loaded text from file:" << endl;
+                while (getline(file, text))
+                {
+                    cout << text << endl;
+                }
+            }
+            else
+            {
+                cout << "Unable to open file." << endl;
+            }
+            file.close();
+        }
+    }
 int main()
  {
     int re,im,re1,im1;
@@ -1126,6 +1159,12 @@ else if(command == "timer -s")
     cout << "Give time in seconds: " << endl;
     cin >> sec;
     timer(sec);
+}
+else if (command == "Notepad" || command == "notepad")
+{
+    string text;
+    notepad(text);
+    getline(cin, text);
 }
 return 0;
 }
