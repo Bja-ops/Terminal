@@ -864,10 +864,18 @@ void load(const string& text)
     {
         fstream file;
         file.open("save.txt", ios::in);
-        if (file.is_open())
+        if (!file)
         {
-            
+            cerr << "Error: Unable to open file for saving!" << endl;
+            return;
         }
+
+        string line;
+        while (getline(file, line))
+        {
+            cout << line << endl;
+        }
+        file.close();
     }
 
 
@@ -877,12 +885,12 @@ void notepad() {
 
         cout << "What do you want to do? (save/load): ";
         cin >> operation;
-        cin.ignore();  // Usuwa pozostający znak nowej linii po cin >>
+        cin.ignore();
 
         if (operation == "save")
         {
             cout << "Enter text: ";
-            getline(cin, text);  // Teraz poprawnie odczytuje cały tekst
+            getline(cin, text);
 
             fstream file("save.txt", ios::out | ios::app);
             if (!file)
@@ -897,7 +905,7 @@ void notepad() {
         }
         else if (operation == "load")
         {
-
+            load(text);
         }
         else
         {
