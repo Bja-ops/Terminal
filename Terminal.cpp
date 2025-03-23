@@ -843,39 +843,69 @@ void timer(int seconds)
         }
         cout << "Time is up!" << endl;
 }
-void notepad(string text)
+
+void save(const string& text)
+{
+        fstream file;
+        file.open("save.txt", ios::out | ios::app);
+
+        if (!file)
+        {
+            cerr << "Error: Unable to open file for saving!" << endl;
+            return;
+        }
+
+        file << text << endl;
+        file.close();
+        cout << "Text saved successfully to save.txt" << endl;
+}
+
+void load(const string& text)
     {
-        string operation;
-        cout << "Enter operation: ";
+        fstream file;
+        file.open("save.txt", ios::in);
+        if (file.is_open())
+        {
+            
+        }
+    }
+
+
+
+void notepad() {
+        string text, operation;
+
+        cout << "What do you want to do? (save/load): ";
         cin >> operation;
-        cin.ignore();
-        getline(cin, text);
+        cin.ignore();  // Usuwa pozostający znak nowej linii po cin >>
+
         if (operation == "save")
         {
-            fstream file;
-            file.open("save.txt", ios::out | ios::app);
-            file << text;
+            cout << "Enter text: ";
+            getline(cin, text);  // Teraz poprawnie odczytuje cały tekst
+
+            fstream file("save.txt", ios::out | ios::app);
+            if (!file)
+            {
+                cerr << "Error: Unable to open file for saving!" << endl;
+                return;
+            }
+
+            file << text << endl;
             file.close();
+            cout << "Text saved successfully!" << endl;
         }
         else if (operation == "load")
         {
-            fstream file;
-            file.open("save.txt", ios::in);
-            if (file.is_open())
-            {
-                cout << "Loaded text from file:" << endl;
-                while (getline(file, text))
-                {
-                    cout << text << endl;
-                }
-            }
-            else
-            {
-                cout << "Unable to open file." << endl;
-            }
-            file.close();
+
+        }
+        else
+        {
+            cout << "Invalid operation!" << endl;
         }
     }
+
+
 int main()
  {
     int re,im,re1,im1;
@@ -1163,8 +1193,7 @@ else if(command == "timer -s")
 else if (command == "Notepad" || command == "notepad")
 {
     string text;
-    notepad(text);
-    getline(cin, text);
+    notepad();
 }
 return 0;
 }
