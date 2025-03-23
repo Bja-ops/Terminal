@@ -883,7 +883,7 @@ void load(const string& text)
 void notepad() {
         string text, operation;
 
-        cout << "What do you want to do? (save/load): ";
+        cout << "What do you want to do? (save/load/edit): ";
         cin >> operation;
         cin.ignore();
 
@@ -907,9 +907,9 @@ void notepad() {
         {
             load(text);
         }
-        else
+        else if (operation == "edit")
         {
-            cout << "Invalid operation!" << endl;
+            
         }
     }
 
