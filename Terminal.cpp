@@ -863,7 +863,10 @@ void save(const string& text)
 void load(const string& text)
     {
         fstream file;
-        file.open("save.txt", ios::in);
+        string filename;
+        cout << "Enter file to load: " << endl;
+        cin >> filename;
+        file.open(filename, ios::in);
         if (!file)
         {
             cerr << "Error: Unable to open file for saving!" << endl;
@@ -878,12 +881,29 @@ void load(const string& text)
         file.close();
     }
 
+void Newfile(const string& text)
+    {
+        cout << "Enter file name: " << endl;
+        string filename;
+        cin >> filename;
+        fstream file;
+        file.open(filename, ios::in | ios::app);
+        file.close();
+    }
+
+void remove(const string& text)
+    {
+        cout << "Enter file name to delete: " << endl;
+        string filename;
+        cin >> filename;
+        remove(filename.c_str());
+    }
 
 
 void notepad() {
         string text, operation;
 
-        cout << "What do you want to do? (save/load/edit): ";
+        cout << "What do you want to do? (save/load/create new file/remove): ";
         cin >> operation;
         cin.ignore();
 
@@ -891,8 +911,10 @@ void notepad() {
         {
             cout << "Enter text: ";
             getline(cin, text);
-
-            fstream file("save.txt", ios::out | ios::app);
+            string filename;
+            cout << "Enter file name to save: " << endl;
+            cin >> filename;
+            fstream file(filename, ios::out | ios::app);
             if (!file)
             {
                 cerr << "Error: Unable to open file for saving!" << endl;
@@ -907,9 +929,13 @@ void notepad() {
         {
             load(text);
         }
-        else if (operation == "edit")
+        else if (operation == "create")
         {
-            
+            Newfile(text);
+        }
+        else if (operation == "remove")
+        {
+            remove(text);
         }
     }
 
