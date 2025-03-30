@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <chrono>
 #include <thread>
+#include <mmsystem.h>
 
 using namespace std;
 
@@ -840,6 +841,7 @@ void timer(int seconds)
         {
             cout << "Left: " << i << " seconds" << endl;
             this_thread::sleep_for(chrono::seconds(1));
+            PlaySoundA("sound1.wav", NULL, SND_FILENAME);
         }
         cout << "Time is up!" << endl;
 }
