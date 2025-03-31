@@ -910,7 +910,6 @@ void copy2()
         string text;
         getline(cin,text);
         strlen(text.c_str());
-
     }
 void notepad() {
         string text, operation;
