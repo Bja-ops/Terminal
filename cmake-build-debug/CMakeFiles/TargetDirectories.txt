@@ -1,0 +1,3 @@
+C:/Users/Bartek/Desktop/studia/programowanie/projekty/cmake-build-debug/CMakeFiles/projekty.dir
+C:/Users/Bartek/Desktop/studia/programowanie/projekty/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Bartek/Desktop/studia/programowanie/projekty/cmake-build-debug/CMakeFiles/rebuild_cache.dir
