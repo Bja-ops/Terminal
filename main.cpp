@@ -901,11 +901,21 @@ void remove(const string& text)
         remove(filename.c_str());
     }
 
+void copy2()
+    {
+        cout << "Give file to open: " << endl;
+        string filename;
+        load(filename);
+        cout << "Give word or sentence to copy: " << endl;
+        string text;
+        getline(cin,text);
+        strlen(text.c_str());
 
+    }
 void notepad() {
         string text, operation;
 
-        cout << "What do you want to do? (save/load/create new file/remove): ";
+        cout << "What do you want to do? (save/load/create new file/remove/copy): ";
         cin >> operation;
         cin.ignore();
 
@@ -939,32 +949,9 @@ void notepad() {
         {
             remove(text);
         }
-    }
-
-    void memory()
-    {
-        cout << "Welcome in memory game! " << endl;
-        cout << "Chose difficulty: " << endl;
-        cout << "1. Easy" << endl;
-        cout << "2. Medium" << endl;
-        cout << "3. Hard" << endl;
-        int choice;
-        cin >> choice;
-        switch (choice)
+        else if (operation == "copy")
         {
-        case 1:
-            srand(time(NULL));
-            while (true)
-            {
-                int randnum = rand() % 10;
-                cout << randnum;
-                system("cls");
-                Sleep(1000);
-            }
-        default:
-                {
-                    system("cls");
-                }
+            copy();
         }
     }
 int main()
@@ -1255,10 +1242,6 @@ else if (command == "Notepad" || command == "notepad")
 {
     string text;
     notepad();
-}
-else if (command == "memory")
-{
-    memory();
 }
 return 0;
 }
