@@ -941,7 +941,32 @@ void notepad() {
         }
     }
 
-
+    void memory()
+    {
+        cout << "Welcome in memory game! " << endl;
+        cout << "Chose difficulty: " << endl;
+        cout << "1. Easy" << endl;
+        cout << "2. Medium" << endl;
+        cout << "3. Hard" << endl;
+        int choice;
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            srand(time(NULL));
+            while (true)
+            {
+                int randnum = rand() % 10;
+                cout << randnum;
+                system("cls");
+                Sleep(1000);
+            }
+        default:
+                {
+                    system("cls");
+                }
+        }
+    }
 int main()
  {
     int re,im,re1,im1;
@@ -1230,6 +1255,10 @@ else if (command == "Notepad" || command == "notepad")
 {
     string text;
     notepad();
+}
+else if (command == "memory")
+{
+    memory();
 }
 return 0;
 }
